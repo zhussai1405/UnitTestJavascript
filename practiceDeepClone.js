@@ -35,7 +35,7 @@ console.log(car);
 console.log(fastCar);
 
 
-function deepClone(anyObjectVariable) {
+function deepCopy(anyObjectVariable) {
     //create an empty object
     let fastCar = {};
     //use the for in loop to get all of the properties and values of the passed in object
@@ -61,11 +61,33 @@ function deepClone(anyObjectVariable) {
  
 
 
-// let fastCar_ = {
-//     type: "Honda",
-//     color: "red",
-//     Engine: {
-// horsepower: 300, 
-// isElectric: false
-// }
-// }
+let fastCar_ = {
+    type: "Honda",
+    color: "red",
+    Engine: {
+horsepower: 300, 
+isElectric: false
+}
+}
+function deepClone(obj){
+    //Create an empty object
+    let fastCarCopy = {};
+    for(let key in obj){
+        if(obj === null || typeof obj !== 'object'){
+        
+            fastCarCopy[key] = deepClone(obj[key]);
+        }else{
+            fastCarCopy[key] = obj[key];
+        }
+    }
+    return fastCarCopy;
+}
+
+let fastCarCopy = fastCar_;
+console.log(fastCarCopy);
+
+fastCarCopy.color = "White";
+fastCarCopy.type = "Toyota Corola"
+fastCarCopy.Engine.isElectric = true;
+console.log(fastCar_);
+console.log(fastCarCopy);
