@@ -26,68 +26,46 @@ let car = {
     engine: "4"
 }
 
-let fastCar = car;
-console.log(fastCar);
 
-fastCar.color = "blue";
-fastCar.type = "Suzuki"
-console.log(car);
-console.log(fastCar);
+//psudeo code for deep clone function
 
+//clone and return a basic object
+//
+function deepClone(anyObjectVariable){
 
-function deepCopy(anyObjectVariable) {
+    //write down each step in how you're going to handle a simple object that has no functions
+    // then code/implement the steps
+
     //create an empty object
-    let fastCar = {};
+    //object has multiple properties
+    //how are we going to get those properties of any object?
     //use the for in loop to get all of the properties and values of the passed in object
-    for (let key in anyObjectVariable) {
+
     //use the loop to set the property and value with in the new object
-        fastCar[key] = anyObjectVariable[key];
-    }
-
+    //once all of the properties have been copied into the new object
     //return that object
-    return fastCar;
+
 }
 
 
+let fastCar = deepClone(car);
 
- 
-// console.log(car === fastCar); // this should be false, because these are 2 independent objects but with all of the same properties.
+console.log(car === fastCar); // this should be false, because these are 2 independent objects but with all of the same properties.
 
-// console.log(car.color === fastCar.color);//this should be true
+console.log(car.color === fastCar.color);//this should be true
 
-// car.color = "blue";
-// console.log(car.color === fastCar.color);//this should be false
-
- 
+car.color = "blue";
+console.log(car.color === fastCar.color);//this should be false
 
 
-let fastCar_ = {
-    type: "Honda",
-    color: "red",
-    Engine: {
-horsepower: 300, 
-isElectric: false
-}
-}
-function deepClone(obj){
-    //Create an empty object
-    let fastCarCopy = {};
-    for(let key in obj){
-        if(obj === null || typeof obj !== 'object'){
-        
-            fastCarCopy[key] = deepClone(obj[key]);
-        }else{
-            fastCarCopy[key] = obj[key];
-        }
-    }
-    return fastCarCopy;
-}
 
-let fastCarCopy = fastCar_;
-console.log(fastCarCopy);
 
-fastCarCopy.color = "White";
-fastCarCopy.type = "Toyota Corola"
-fastCarCopy.Engine.isElectric = true;
-console.log(fastCar_);
-console.log(fastCarCopy);
+
+// let fastCar_ = {
+//     type: "Honda",
+//     color: "red",
+//     Engine: {
+// horsepower: 300, 
+// isElectric: false
+// }
+// }
