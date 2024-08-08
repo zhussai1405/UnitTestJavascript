@@ -23,7 +23,7 @@
 let car = {
     type: "Honda",
     color: "red",
-    engine: "4"
+    cylinder : 6
 }
 
 
@@ -42,13 +42,18 @@ function deepClone(anyObjectVariable){
     //use the for in loop to get all of the properties and values of the passed in object
     for(let key in anyObjectVariable){
         //use the loop to set the property and value with in the new object
+        //any object has a key and a value
+        
         if (anyObjectVariable.hasOwnProperty(key)) {
             fastCar[key] = anyObjectVariable[key];
+            console.log("fast car copied key " +  fastCar[key]);
         }
     
     }
     //once all of the properties have been copied into the new object
     //return that object
+
+    console.log("copied object " + fastCar.type);
     return fastCar;
 
 }
@@ -63,16 +68,31 @@ console.log(car.color === fastCar.color);//this should be true
 car.color = "blue";
 console.log(car.color === fastCar.color);//this should be false
 
-fastCar = {...car};
+
 console.log(fastCar);
+console.log(car);
 
 
+let fastCar_ = {
+    type: "Honda",
+    color: "red",
+    Engine: {
+        horsepower: 300, 
+        isElectric: false
+    }
+}
 
-// let fastCar_ = {
-//     type: "Honda",
-//     color: "red",
-//     Engine: {
-// horsepower: 300, 
-// isElectric: false
-// }
-// }
+//part 2 
+let carWithOjbect = deepClone(fastCar_);
+
+console.log("Car with obj" + carWithOjbect);
+console.log(carWithOjbect === fastCar_);//this should be false
+console.log(carWithOjbect.color === fastCar_.color);//this should be true
+console.log(carWithOjbect.Engine === fastCar_.Engine);//this should be false
+console.log(carWithOjbect.Engine.horsepower === fastCar_.Engine.horsepower);//this should be true
+console.log(carWithOjbect.Engine.isElectric === fastCar_.Engine.isElectric);//this should be true
+
+
+carWithOjbect.Engine.horsepower = 600;
+
+console.log(carWithOjbect.Engine.horsepower === fastCar_.Engine.horsepower);//this should be false
