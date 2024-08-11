@@ -20,57 +20,57 @@
 //return that object
 
 
-let car = {
-    type: "Honda",
-    color: "red",
-    cylinder : 6
-}
+// let car = {
+//     type: "Honda",
+//     color: "red",
+//     cylinder : 6
+// }
 
 
-//psudeo code for deep clone function
+// //psudeo code for deep clone function
 
-//clone and return a basic object
-//
-function deepClone(anyObjectVariable){
+// //clone and return a basic object
+// //
+// function deepClone(anyObjectVariable){
    
-    //write down each step in how you're going to handle a simple object that has no functions
-    // then code/implement the steps
-    let fastCar = {};
-    //create an empty object
-    //object has multiple properties
-    //how are we going to get those properties of any object?
-    //use the for in loop to get all of the properties and values of the passed in object
-    for(let key in anyObjectVariable){
-        //use the loop to set the property and value with in the new object
-        //any object has a key and a value
+//     //write down each step in how you're going to handle a simple object that has no functions
+//     // then code/implement the steps
+//     let fastCar = {};
+//     //create an empty object
+//     //object has multiple properties
+//     //how are we going to get those properties of any object?
+//     //use the for in loop to get all of the properties and values of the passed in object
+//     for(let key in anyObjectVariable){
+//         //use the loop to set the property and value with in the new object
+//         //any object has a key and a value
         
-        if (anyObjectVariable.hasOwnProperty(key)) {
-            fastCar[key] = anyObjectVariable[key];
-            console.log("fast car copied key " +  fastCar[key]);
-        }
+//        // if (anyObjectVariable.hasOwnProperty(key)) {
+//             fastCar[key] = anyObjectVariable[key];
+//             console.log("fast car copied key " +  fastCar[key]);
+//         //}
     
-    }
-    //once all of the properties have been copied into the new object
-    //return that object
+//     }
+//     //once all of the properties have been copied into the new object
+//     //return that object
 
-    console.log("copied object " + fastCar.type);
-    return fastCar;
+//     console.log("copied object " + fastCar.type);
+//     return fastCar;
 
-}
+// }
 
-let fastCar = deepClone(car);
-console.log(fastCar);
+// let fastCar = deepClone(car);
+// console.log(fastCar);
 
-console.log(car === fastCar); // this should be false, because these are 2 independent objects but with all of the same properties.
+// console.log(car === fastCar); // this should be false, because these are 2 independent objects but with all of the same properties.
 
-console.log(car.color === fastCar.color);//this should be true
+// console.log(car.color === fastCar.color);//this should be true
 
-car.color = "blue";
-console.log(car.color === fastCar.color);//this should be false
+// car.color = "blue";
+// console.log(car.color === fastCar.color);//this should be false
 
 
-console.log(fastCar);
-console.log(car);
+// console.log(fastCar);
+// console.log(car);
 
 
 let fastCar_ = {
@@ -81,12 +81,30 @@ let fastCar_ = {
         isElectric: false
     }
 }
+function deepClone(obj){
+    if (obj === null || typeof obj !== 'object') {          //first check for null or non object type 
+        
+        return obj;                                         // Return the value if obj is not an object
+    }
+    let copyNewObj = Array.isArray(obj) ? [] : {};
+    //use the for in loop to get all of the properties and values of the passed in object
+    for(let key in obj){
+        //use the loop to set the property and value with in the new object
+        if(obj.hasOwnProperty(key)){  
+    copyNewObj[key] = deepClone(obj[key]);
+    console.log("fast car copied key " +  copyNewObj[key]);
+}
+    }
+    //return that object
+    return copyNewObj;
+}
 
 //part 2 
 let carWithOjbect = deepClone(fastCar_);
 
 console.log("Car with obj" + carWithOjbect);
-console.log(carWithOjbect === fastCar_);//this should be false
+console.dir(carWithOjbect);
+console.log( carWithOjbect === fastCar_);//this should be false
 console.log(carWithOjbect.color === fastCar_.color);//this should be true
 console.log(carWithOjbect.Engine === fastCar_.Engine);//this should be false
 console.log(carWithOjbect.Engine.horsepower === fastCar_.Engine.horsepower);//this should be true
@@ -96,3 +114,5 @@ console.log(carWithOjbect.Engine.isElectric === fastCar_.Engine.isElectric);//th
 carWithOjbect.Engine.horsepower = 600;
 
 console.log(carWithOjbect.Engine.horsepower === fastCar_.Engine.horsepower);//this should be false
+
+
