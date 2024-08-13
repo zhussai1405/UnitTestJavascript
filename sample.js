@@ -66,19 +66,59 @@ console.log(pindiAddress === IslamabadAddr);
     // return new object
     // }
 
-   let someNewClonedOjbectReturned = deepClone(pindiAddress);
+   //let someNewClonedOjbectReturned = deepClone(pindiAddress);
 
 
-console.log(someNewClonedOjbectReturned === pindiAddress);//will this be true or false?
-
-
-
+//console.log(someNewClonedOjbectReturned === pindiAddress);//will this be true or false?
 
 
 
+//Passing a Primitive value type:
+function changePrimitive(value){
+    value = 42;
+    console.log("Inside function:" , value);
+}
+
+let num = 10;
+changePrimitive(num);
+console.log("Outside function:" , num);
+
+
+
+function modifyPrimitive(value){
+    value = true;
+    console.log("Inside function:" , value);
+}
+
+let boolean = false;
+modifyPrimitive(boolean);
+console.log("Outside function:" , boolean);
 
 
 
 
+function stringPrimitive(value){
+    value = "Hello";
+    console.log("Inside function:" , value);
+}
 
+let string = "World";
+modifyPrimitive(string);
+console.log("Outside function:" , string);
+
+
+let car ={
+    color : "Red",
+
+}
+function changeCarColor(anyCar){
+    anyCar.color = "Blue";
+    console.log(anyCar.color);
+
+
+}
+
+changeCarColor(car);
+
+console.log(car.color);
 
